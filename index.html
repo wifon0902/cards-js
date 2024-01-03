@@ -11,7 +11,7 @@
 <body>
 <div class="swiper">
   <div class="card-groups">
-    <div class="card-group">
+    <div class="card-group" data-index="0" data-status="active">
       <div class="little-card card"></div>
       
       <div class="big-card card"></div>
@@ -29,7 +29,7 @@
       <div class="big-card card"></div>
     </div>
   
-    <div class="card-group">
+    <div class="card-group" data-index="1" data-status="unknown">
       <div class="little-card card"></div>
       
       <div class="big-card card"></div>
@@ -47,7 +47,7 @@
       <div class="big-card card"></div>
     </div>
   
-    <div class="card-group">
+    <div class="card-group" data-index="2" data-status="unknown">
       <div class="little-card card"></div>
       
       <div class="big-card card"></div>
@@ -66,14 +66,36 @@
     </div>
   </div>
   <div class="swiper-buttons">
-    <button id="dislike-button">
+    <button id="dislike-button" onClick="dislikeClick()">
       <i class="fa-solid fa-x"></i>
     </button>
-    <button id="like-button">
+    <button id="like-button" onClick="likeClick()">
       <i class="fa-solid fa-heart"></i>
     </button>
   </div>
 </div>
 
+<script>
+  let activeIndex = 0;
+
+  const groups = document.getElementsByClassName("card-group");
+
+  const likeClick = () => {
+    const nextIndex = activeIndex + 1 <= groups.length -1 ? activeIndex + 1 : 0;
+
+    const currentGroup = document.querySelector(`[data-index="${activeIndex}"]`);
+    const nextGroup = document.querySelector(`[data-index="${nextIndex}"]`);
+
+
+    currentGroup.dataset.status = "after";
+
+    nextGroup.dataset.status = "before-active";
+    setTimeout(() => {
+      nextGroup.dataset.status = "active";
+      activeIndex = nextIndex;
+    });
+
+  }
+</script>
 </body>
 </html>
