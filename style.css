@@ -11,12 +11,25 @@ body {
   transform: scale(0);
 }
 
+.card-group[data-status="active"] {
+  transition-delay: 200ms;
+}
+
 .card-group[data-status="after"] {
   transform: translateX(50%) scale(0);
 }
 
-.card-group[data-status="before-active"] {
+.card-group[data-status="before"] {
   transform: translateX(-50%) scale(0);
+}
+
+.card-group[data-status="becoming-active-from-before"] {
+  transform: translateX(-50%) scale(0);
+  transition: none;
+}
+
+.card-group[data-status="becoming-active-from-after"] {
+  transform: translateX(50%) scale(0);
   transition: none;
 }
 
